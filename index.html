@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-10-24 16:36:54'
+  postUpdate: '2023-11-26 19:29:48'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -150,108 +150,46 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/R-C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="白兰"><span class="site-name">白兰</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">白兰</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/24/redis/" title="redis">redis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-24T00:49:24.149Z" title="发表于 2023-10-24 08:49:24">2023-10-24</time></span></div><div class="content">数据类型有哪些数据结构String类型（intset和SDS）存放的是字符串
-value可以是数字类型的字符串
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/R-C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="白兰"><span class="site-name">白兰</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">白兰</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/26/11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-26T11:29:07.475Z" title="发表于 2023-11-26 19:29:07">2023-11-26</time></span></div><div class="content">
+自我介绍
 
-Hash类型（ziplist和hashtable）存储的是键值对
-外层value是一个(field,value)键值对形式的map
-作用：存放对象
+JVM 内存模型 （×）
 
-List类型（ziplist和linkedlist）可以存储相同的字符串
-LPUSH头插法
-RPUSH尾插法
-作用：模拟队列，栈
+JVM 运行时数据区（×）
 
-Set类型（intset和hashtable）不能存储相同的字符串
-作用：好友判断
+ArrayList 扩容流程（√）
 
-SortedSet类型（ziplist和skiplist）外层value是一个(value,score)键值对形式的map，score用来排序，还有排名，关键是一定范围
-作用：成绩排序
+Hashmap 的一个数据查找（√）
 
-数据结构底层实现String：SDS作为字符串表示
-使用的空间用 len 变量保存，查询长度不用遍历查询，效率高，没用的空间用 free 变量保存
-增加字符串长度会先用 len 检查是否有足够空间，不会造成缓冲区溢出导致覆盖其他空间的字符串
-内存分配次数可能减少，有预分配机制和惰性释放没用的空间
-可以保存二进制数据，因为是用 l ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/23/leetcode%E5%88%B7%E9%A2%98/" title="leetcode刷题">leetcode刷题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-23T11:09:25.613Z" title="发表于 2023-10-23 19:09:25">2023-10-23</time></span></div><div class="content">数组二分查找12345int left = 0, right = length - 1;while(left &lt;= right)&#123;	int mid = left + (right - left) / 2;	判断中值和target关系，不断移动左右指针&#125;
+自定义对象作为 Hashmap 的 key，我们应该对这个自定义对象去覆盖哪些方法（√）
 
+ReenTrantLock 和 Synchronized 的区别（×）
 
+上如两种锁的可重入性在 JVM 是怎么实现的（×）
 
-双指针删除元素、移动零
-1两个指针同一个维度，都是向右运动
+MySQL 四种隔离级别（√）
 
-链表相交、环形链表
-1两个指针不同维度，都是向右运动
+幻读在哪种隔离级别出现（√）
 
-三数之和、四数之和
-1两个指针同一个维度，相向运动
+索引失效（√）
 
+怎么才能用上联合索引（√）
 
+Redis 数据类型（√）
 
-滑动窗口长度最小的子数组
-最小覆盖子串
-1也是两个指针，右指针直到满足条件停止，然后左指针移动让窗口的条件破坏，右指针再移动
+zset 的底层实现（√）
 
+为什么使用跳表，而不是B+树，红黑树（√）
 
+Redis 的主从复制（×）
 
-链表反转链表（反转整条链表、反转k个一组的链表）
-1prev指针，nex指针，两个指针之间是待反转的链表
+介绍一下数据结构可视化编程平台
 
-合并有序链表（两个、多个）
-哈希表数组：一个字符串可以由另一个字符串组成
-1判断字符次数时候&lt;0
+数据结构可视化编程平台哪些难点，怎么实现（说了修改题目写时复制）
 
-set：两个数组交集
-1两次循环，用hashset快速查找元素是否存在
+12306的缓存穿透，你怎么看缓存穿透（主要是布隆过滤器）
 
-map：两数之和、字母异位词分组
-1一次循环
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/22/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="JVM虚拟机">JVM虚拟机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-22T15:36:21.715Z" title="发表于 2023-10-22 23:36:21">2023-10-22</time></span></div><div class="content">内存结构
+RocketMQ 来取消订单，技术选型，为什么用 RocketMQ
 
 
-线程私有：程序计数器、虚拟机栈、本地方法区
-线程共享：堆、方法区, 堆外内存（Java7的永久代或JDK8的元空间、代码缓存）
-
-线程私有：它的生命周期随着线程的创建而创建，随着线程的结束而死亡程序计数器：记住下一条指令的地址（偏移地址）
-线程私有
-执行本地方法，值为空
-不会内存溢出OutOfMemoryError
-
-虚拟机栈：java程序控制台看到的堆栈信息
-
-操作数栈 用于存放方法执行过程中产生的中间计算结果。另外，计算过程中产生的临时变量也会放在操作数栈中。
-动态链接 主要服务一个方法需要调用其他方法的场景。Class 文件的常量池里保存有大量的符号引用比如方法引用的符号引用。当一个方法要调用其他方法，需要将常量池中指向方法的符号引用转化为其在内存地址中的直接引用。动态链接的作用就是为了将符号引用转换为调用方法的直接引用，这个过程也被称为 动态连接 。
-栈内存溢出可能原因：
-
-CPU占用过高，程序一直在运行
-
-死锁
-
-特点？
-
-
-
-栈是一种快速有效的分配存储方式，访问速度仅次于程序计数器
-JVM 直接对虚拟机栈的操作只有两个：每个方法执行，伴随着入栈（进栈&#x2F ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/10/17/mysql/" title="mysql">mysql</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-10-17T07:40:05.030Z" title="发表于 2023-10-17 15:40:05">2023-10-17</time></span></div><div class="content">执行流程
-分成了server层和存储层
-1.连接器：
-连接方式有TCP&#x2F;IP、命名管道或共享内存、UNIX域套接字
-创建连接的时候会创建一条线程来是让服务端和客户端交互
-调开连接的时候服务端会缓存这条连接给下一个客户端使用，避免了频繁创建销毁线程
-使用长连接减少重连的次数，但是定期重新初始化资源，否则占用内存会过大
-2.查询缓存：
-查询缓存可以在不同客户端共享
-如果查询语句有字符不同或者调用了系统函数如NOW()，不会存放到缓存
-表结构或者表数据被修改的时候，缓存失效
-3.分析器：查询sql语句是否符合语法
-4.优化器：
-选择什么索引
-表之间的连接顺序
-5.执行器（存储引擎）：对表中的数据进行查询或者写入
-数据如何存储以页为最小读写单位，默认是16KB
-页之间是双向链表连接，区是用来减少读大量相邻数据的随机I&#x2F;O，优化为顺序I&#x2F;O
-操作系统默认读数据也是页，不过只有4KB，Innodb从磁盘拿数据要4次
-
-MYSQL的数据目录MYSQL服务启动的时候会从文件系统的数据目录加载数据
-数据库对应的是数据目录下的同名的文件夹，表对应的是数据库文件夹下的文件
-In ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hxj</div><div class="author-info__description">人们往往高估了一天能做的事情，同时也低估了一年能做的事情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/24/redis/" title="redis">redis</a><time datetime="2023-10-24T00:49:24.149Z" title="发表于 2023-10-24 08:49:24">2023-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/23/leetcode%E5%88%B7%E9%A2%98/" title="leetcode刷题">leetcode刷题</a><time datetime="2023-10-23T11:09:25.613Z" title="发表于 2023-10-23 19:09:25">2023-10-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/22/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="JVM虚拟机">JVM虚拟机</a><time datetime="2023-10-22T15:36:21.715Z" title="发表于 2023-10-22 23:36:21">2023-10-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/17/mysql/" title="mysql">mysql</a><time datetime="2023-10-17T07:40:05.030Z" title="发表于 2023-10-17 15:40:05">2023-10-17</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-10-24T08:36:54.041Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hxj</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/26/2023-11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-26T11:16:13.581Z" title="发表于 2023-11-26 19:16:13">2023-11-26</time></span></div><div class="content"></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hxj</div><div class="author-info__description">人们往往高估了一天能做的事情，同时也低估了一年能做的事情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/26/11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/" title="无题">无题</a><time datetime="2023-11-26T11:29:07.475Z" title="发表于 2023-11-26 19:29:07">2023-11-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/26/2023-11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/" title="无题">无题</a><time datetime="2023-11-26T11:16:13.581Z" title="发表于 2023-11-26 19:16:13">2023-11-26</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">2</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-26T11:29:48.950Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hxj</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
