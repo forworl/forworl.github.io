@@ -23,6 +23,25 @@
     
     
     <entry>
+      <title>Sharding-JDBC</title>
+      <link href="/2023/12/20/Sharding-JDBC/"/>
+      <url>/2023/12/20/Sharding-JDBC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据库数据量过大如何解决？"><a href="#数据库数据量过大如何解决？" class="headerlink" title="数据库数据量过大如何解决？"></a>数据库数据量过大如何解决？</h1><p>改进硬件，如内存、CPU等</p><p>集群部署，主从架构</p><p>分库分表</p><h1 id="分库分表的几种方式"><a href="#分库分表的几种方式" class="headerlink" title="分库分表的几种方式"></a>分库分表的几种方式</h1><p>垂直分表、垂直分库、水平分表、水平分库</p><h2 id="垂直分表"><a href="#垂直分表" class="headerlink" title="垂直分表"></a>垂直分表</h2><p>按照字段拆分，增加页内能存储的的行数据来减少IO的次数，以及减少对行锁竞争</p><h2 id="垂直分库"><a href="#垂直分库" class="headerlink" title="垂直分库"></a>垂直分库</h2><p>按照业务拆分，减少业务间的耦合，转库专用，不同业务的库可以部署在不同服务器减少对硬件资源的压力</p><h2 id="水平分库"><a href="#水平分库" class="headerlink" title="水平分库"></a>水平分库</h2><p>解决单库数据量大问题，把单库数据平摊到多个库，可以用ID取模或者hash确定数据在哪个数据库，减小单库的压力 </p><p><strong>和垂直分库对比</strong></p><p>垂直分库是根据业务把不同业务的表拆分到不同数据库</p><p>水平分库是把相同业务的表复制一份到不同数据库</p><h2 id="水平分表"><a href="#水平分表" class="headerlink" title="水平分表"></a>水平分表</h2><p>解决单表数据量大问题，把单表数据平摊到多个表，减小单表数据量，减少IO</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在系统设计的时候，就要根据需求，设计好垂直分库分表</p><p>在业务上线后，如果数据量增大，先考虑用缓存、读写分离、索引等方式优化，如果业务数据量持续增大，再考虑用水平分库分表</p><h1 id="分库分表带来的一些问题"><a href="#分库分表带来的一些问题" class="headerlink" title="分库分表带来的一些问题"></a>分库分表带来的一些问题</h1><h2 id="事务一致性问题"><a href="#事务一致性问题" class="headerlink" title="事务一致性问题"></a>事务一致性问题</h2><p>需要操作多个数据库的时候，需要分布式事务</p><h2 id="跨界点关联查询"><a href="#跨界点关联查询" class="headerlink" title="跨界点关联查询"></a>跨界点关联查询</h2><p>由于表在不同数据库内，在写SQL语句的时候无法通过联表查询</p><h2 id="跨界点分页、排序函数"><a href="#跨界点分页、排序函数" class="headerlink" title="跨界点分页、排序函数"></a>跨界点分页、排序函数</h2><p>由于表在不同数据库内，在写SQL语句的时候需要查询多次，在内存中排序</p><h2 id="主键避重"><a href="#主键避重" class="headerlink" title="主键避重"></a>主键避重</h2><p>不同数据库主键重复问题</p><h2 id="公共表"><a href="#公共表" class="headerlink" title="公共表"></a>公共表</h2><p>每个数据库都有一些公共表，公共表的数据一致性问题</p><h1 id="Sharding-JDBC流程"><a href="#Sharding-JDBC流程" class="headerlink" title="Sharding-JDBC流程"></a>Sharding-JDBC流程</h1><h2 id="SQL解析"><a href="#SQL解析" class="headerlink" title="SQL解析"></a>SQL解析</h2><p>将SQL语句根据单词拆分解析成语法树，树节点包括关键字、变量等</p><p>在这里就可以确定哪些是需要被替换的逻辑表</p><h2 id="SQL路由"><a href="#SQL路由" class="headerlink" title="SQL路由"></a>SQL路由</h2><p>将逻辑表映射到真实的物理节点</p><p>尽量使用分片键进行路由，WHERE条件包括 &#x3D; 、IN 、BETWEEN，否则会走全局路由（扫描所有库同名的所有表），联表的话不用分片键也会产生笛卡尔积</p><p>总的来说，分片键配合分片策略可以很好的减少SQL查询的行数，加快查询速度</p><h2 id="SQL改写"><a href="#SQL改写" class="headerlink" title="SQL改写"></a>SQL改写</h2><p>将逻辑表改写为真实表</p><p>如果有排序条件，将排序条件补充到查询条件中</p><h2 id="SQL执行"><a href="#SQL执行" class="headerlink" title="SQL执行"></a>SQL执行</h2><h3 id="内存限制模式"><a href="#内存限制模式" class="headerlink" title="内存限制模式"></a>内存限制模式</h3><p>不限制数据库连接数，多线程处理，加快查询速度</p><h3 id="连接限制模式"><a href="#连接限制模式" class="headerlink" title="连接限制模式"></a>连接限制模式</h3><p>限制数据库连接数，通常用于事务控制</p><h2 id="结果归并"><a href="#结果归并" class="headerlink" title="结果归并"></a>结果归并</h2><p>略</p><h1 id="如何编写分库分表配置文件"><a href="#如何编写分库分表配置文件" class="headerlink" title="如何编写分库分表配置文件"></a>如何编写分库分表配置文件</h1><p>配置数据源</p><p>配置主从关系</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分库分表 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode</title>
       <link href="/2023/12/12/%E7%AE%97%E6%B3%95/"/>
       <url>/2023/12/12/%E7%AE%97%E6%B3%95/</url>
