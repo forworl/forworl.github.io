@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>设计模式</title>
+      <link href="/2024/01/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2024/01/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="面对对象三大特性"><a href="#面对对象三大特性" class="headerlink" title="面对对象三大特性"></a>面对对象三大特性</h1><p>封装、继承、多态</p><h1 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h1><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164237808.png" alt="image-20240104164237808"></p><h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><p>父子继承</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164319006.png" alt="image-20240104164319006"></p><h2 id="实现接口"><a href="#实现接口" class="headerlink" title="实现接口"></a>实现接口</h2><p>实现接口</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164341390.png" alt="image-20240104164341390"></p><h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164400756.png" alt="image-20240104164400756"></p><h2 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h2><p>弱包含关系，B可以不是A的一部分</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164417747.png" alt="image-20240104164417747"></p><h2 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h2><p>强包含关系，B是A的一部分</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164428624.png" alt="image-20240104164428624"></p><h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><p>强耦合</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104164504261.png" alt="image-20240104164504261"></p><h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><p><strong>工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式</strong></p><h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>比如要实现一个计算器功能，我们用 switch 或者 if 根据符号来判断用哪个工厂生成答案，如果需要增加复杂的运算，只需要 switch 多加一个选择，多加一个工厂类就可以了</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104171815675.png" alt="image-20240104171815675"></p><h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><p><strong>适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式</strong></p><h1 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h1><p><strong>策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式</strong></p><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>Strategy策略类定义了某个各种算法的公共方法，不同的算法类通过继承Strategy策略类，实现自己的算法</p><p>Context的作用是减少客户端和Strategy策略类之间的耦合，客户端只需要调用Context并且传递相应的算法参数，来调用不同的算法，Context的内部实现可以用简单工厂模式</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240104171319410.png" alt="image-20240104171319410"></p><h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p><strong>策略模式和简单工厂模式的区别？</strong></p><p>策略模式的这些算法都是在完成一件事，只不过实现不同；简单工厂模式的这些工厂生产的是不同的产品</p><p>当然我个人认为，从代码实现的角度看，Context 等价于 Factory，然后工厂模式没有 Strategy 这一层，直接是不同工厂继承父工厂，有点类似吧</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 设计模式 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2023年度总结</title>
       <link href="/2023/12/28/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
       <url>/2023/12/28/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
