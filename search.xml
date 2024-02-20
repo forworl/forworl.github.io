@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>简单了解ArrayList和LinkedList</title>
+      <link href="/forworl.github.io/2024/02/20/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3ArrayList%E5%92%8CLinkedList/"/>
+      <url>/forworl.github.io/2024/02/20/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3ArrayList%E5%92%8CLinkedList/</url>
+      
+        <content type="html"><![CDATA[<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p><strong>ArrayList和LinkedList本质上的区别是数组和链表之间的增删改查的区别，ArrayList多一个扩容机制而已</strong></p><h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h5 id="底层是数组"><a href="#底层是数组" class="headerlink" title="底层是数组"></a>底层是数组</h5><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115100728681.png" alt="image-20240115100728681"></p><h5 id="add"><a href="#add" class="headerlink" title="add()"></a>add()</h5><p>先判断是否需要扩容</p><p>再插入</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115100830425.png" alt="image-20240115100830425"></p><h5 id="grow"><a href="#grow" class="headerlink" title="grow()"></a>grow()</h5><p>1.5倍扩容，如果初始为0，那么扩容到1；如果初始为1，那么扩容到2</p><p>new一个新的数组，Arrays.copyof() 将旧的数组copy过去</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115101353211.png" alt="image-20240115101353211"></p><h5 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h5><p>检查位置是否合法，然后删除，需要调用native方法移动数组元素</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115102204254.png" alt="image-20240115102204254"></p><h5 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h5><p>根据下标直接返回元素</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115103317507.png" alt="image-20240115103317507"></p><h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><h5 id="底层是双向链表，一头头节点，一个尾节点"><a href="#底层是双向链表，一头头节点，一个尾节点" class="headerlink" title="底层是双向链表，一头头节点，一个尾节点"></a>底层是双向链表，一头头节点，一个尾节点</h5><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115102442807.png" alt="image-20240115102442807"></p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115102719636.png" alt="image-20240115102719636"></p><h5 id="add-1"><a href="#add-1" class="headerlink" title="add()"></a>add()</h5><p>尾插法插入新的节点</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115102842291.png" alt="image-20240115102842291"></p><h5 id="remove-1"><a href="#remove-1" class="headerlink" title="remove()"></a>remove()</h5><p>拿到待删除节点的前后节点，进行双向链表那样的删除</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115102922252.png" alt="image-20240115102922252"></p><h5 id="get-1"><a href="#get-1" class="headerlink" title="get()"></a>get()</h5><p>会用二分法先优化一下，索引位置和链表长度&#x2F;2先比对一下，然后在左半边遍历还是右半边遍历</p><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240115103138904.png" alt="image-20240115103138904"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java SE </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2024-01-30快音面试</title>
       <link href="/forworl.github.io/2024/01/30/2024-01-30%E5%BF%AB%E9%9F%B3%E9%9D%A2%E8%AF%95/"/>
       <url>/forworl.github.io/2024/01/30/2024-01-30%E5%BF%AB%E9%9F%B3%E9%9D%A2%E8%AF%95/</url>
