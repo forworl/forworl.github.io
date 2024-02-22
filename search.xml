@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>如何学习一个新东西</title>
+      <link href="/forworl.github.io/2024/02/22/%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E4%B8%9C%E8%A5%BF/"/>
+      <url>/forworl.github.io/2024/02/22/%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E4%B8%9C%E8%A5%BF/</url>
+      
+        <content type="html"><![CDATA[<p>这个东西我们把它称作 x 吧</p><p>学东西切记走马观花，不是越快越好，在你学过一遍之后，一定要及时的输出（笔记或者是小demo），建议列一个思维导图，方便快速回忆起 x 的一些总体框架，具体细节可以看笔记</p><p><strong>基本步骤</strong></p><p>1.我们需要了解这个东西的概念，是用来干嘛的，有什么特性，有没有同类别的产品</p><p>2.快速上手，我们需要学习一些 x 的基本用法，可以做一些小 demo</p><p>3.深入了解当中的一些功能，它的底层源码是如何实现这个功能的，一般会涉及到一些设计模式</p><p>4.融会贯通，这一步是自然而然随时间的累计会达成的</p><p>最后，加油！！！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>简单了解ArrayList和LinkedList</title>
       <link href="/forworl.github.io/2024/02/20/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3ArrayList%E5%92%8CLinkedList/"/>
       <url>/forworl.github.io/2024/02/20/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3ArrayList%E5%92%8CLinkedList/</url>
