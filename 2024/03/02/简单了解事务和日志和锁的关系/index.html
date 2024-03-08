@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>简单了解事务和日志和锁的关系 | 白兰</title><meta name="author" content="fuleyou"><meta name="copyright" content="fuleyou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="先来说说什么是事务，事务是数据库并发控制的基本单位，事务内有一系列的逻辑操作，需要一起成功或者一起失败，让数据库从一个一致性状态转换到另一个一致性状态，事务和日志和锁的关系在于事务的特性需要依靠这些机制来保证。 我们可以先看看事务的四大特性：  原子性（使用undo log）：一个事务中的所有操作都是不可分割的，要么全部完成，要么全部失败 隔离性（锁 or MVCC）：防止多个事务间并行操作时，其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单了解事务和日志和锁的关系">
+<meta property="og:url" content="https://github.com/forworl.github.io/2024/03/02/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BA%8B%E5%8A%A1%E5%92%8C%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="白兰">
+<meta property="og:description" content="先来说说什么是事务，事务是数据库并发控制的基本单位，事务内有一系列的逻辑操作，需要一起成功或者一起失败，让数据库从一个一致性状态转换到另一个一致性状态，事务和日志和锁的关系在于事务的特性需要依靠这些机制来保证。 我们可以先看看事务的四大特性：  原子性（使用undo log）：一个事务中的所有操作都是不可分割的，要么全部完成，要么全部失败 隔离性（锁 or MVCC）：防止多个事务间并行操作时，其">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-02T08:39:01.000Z">
+<meta property="article:modified_time" content="2024-03-02T09:24:54.384Z">
+<meta property="article:author" content="fuleyou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/forworl.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/forworl.github.io/2024/03/02/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BA%8B%E5%8A%A1%E5%92%8C%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/forworl.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/forworl.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '简单了解事务和日志和锁的关系',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-02 17:24:54'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/forworl.github.io/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/forworl.github.io/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/forworl.github.io/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/forworl.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/forworl.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/forworl.github.io/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/shuoshuo/"><i class="fa-fw fa fa-user"></i><span> 分享</span></a></li><li><a class="site-page child" href="/forworl.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/forworl.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/forworl.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/forworl.github.io/img/star1.jpg')"><nav id="nav"><span id="blog-info"><a href="/forworl.github.io/" title="白兰"><span class="site-name">白兰</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/forworl.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/forworl.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/forworl.github.io/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/shuoshuo/"><i class="fa-fw fa fa-user"></i><span> 分享</span></a></li><li><a class="site-page child" href="/forworl.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/forworl.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/forworl.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">简单了解事务和日志和锁的关系</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-02T08:39:01.000Z" title="发表于 2024-03-02 16:39:01">2024-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-02T09:24:54.384Z" title="更新于 2024-03-02 17:24:54">2024-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/forworl.github.io/categories/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">981</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="简单了解事务和日志和锁的关系"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>先来说说什么是事务，事务是数据库并发控制的基本单位，事务内有一系列的逻辑操作，需要一起成功或者一起失败，让数据库从一个一致性状态转换到另一个一致性状态，事务和日志和锁的关系在于事务的特性需要依靠这些机制来保证。</p>
+<p>我们可以先看看事务的四大特性：</p>
+<ul>
+<li><strong>原子性</strong>（使用undo log）：<strong>一个事务中的所有操作都是不可分割的</strong>，要么全部完成，要么全部失败</li>
+<li><strong>隔离性</strong>（锁 or MVCC）：防止多个事务间并行操作时，其它事务对本事务操作数据的影响</li>
+<li><strong>持久性</strong>（使用redo log）：事务提交后，<strong>数据被保存在磁盘中</strong>，<strong>数据不会丢失</strong></li>
+<li><strong>一致性</strong>（所追求）：<strong>结果符合约束</strong>，比如有钱才能转账、转账双方加起来银行账户的钱总和总是不变</li>
+</ul>
+<p>先来说说原子性，我们知道活跃的事务一般有两种结果，失败回滚或者成功提交，对于失败回滚，我们会用到undo log，对于事务内的每次逻辑操作（也就是一条SQL语句），会把未改变前的快照行数据保存到undo log页，这也就形成了undo log版本链（也就是MVCC的底层数据结构），我们先不谈这个，当发生错误需要事务回滚的时候，我们根据undo log页保存的旧数据来进行事务的回滚，保证了事物的原子性。</p>
+<p>再来谈谈持久性吧，在原子性那里说过事务可能会失败回滚，这里我们来谈谈成功提交的情况，当事务成功提交，我们需要把这些更改的行记录都保存到redo log，避免丢失，当然在事务的途中，对行记录的修改也会被记录到redo log，redo log会根据设定的持久化策略进行刷盘，这里使用redo log有两个原因，写redo log的速度更快（因为数据量更小），并且redo log刷盘是顺序I&#x2F;O循环写，效率更高，后期再慢慢把脏的数据页刷盘就好了，当数据库宕机后，由于redo log刷盘了，对于已经提交的事务，可以根据redo log进行数据的恢复，对于未提交的事务，可以根据redo log配合undo log（undo log也会被redo log记录进行持久化）进行数据的恢复，保证了事务的持久性。</p>
+<p>最后来看看隔离性，对于数据我们一般有读、写两种操作，对于写操作我们一般就是上锁（索引悲观锁或者版本号乐观锁），那么对于读操作（一种是快照读，一种是当前读）有两种解决方案，一种是上锁（对于当前读，会上独占锁），另一种是依靠MVCC（读已提交和可重复读的快照读依靠这个实现），每个事务只能读到行记录的undo log版本链它有权限的部分，对于当前读可以读到所有的版本，对于快照读可以看到的版本如下：</p>
+<ol>
+<li>事务已提交的版本（creator_trx_id &lt; min_trx_id），可见</li>
+<li>事务未开始的版本（creator_trx_id &gt; max_trx_id），不可见</li>
+<li>事务活跃的版本（creator_trx_id 属于 m_ids），不可见</li>
+</ol>
+<p>注意到读已提交和可重复读的视图Read View产生的时机不同，Read View其实就是保存着事务ID的一个集合，读已提交每个SQL都会产生新的Read View（因为默认每个SQL都会开启一个新的事务），可重复读的Read View只会在事务开始产生，事务期间都是同一个Read View，这也是可重复读隔离级别可重复读的原因</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://github.com/forworl.github.io">fuleyou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://github.com/forworl.github.io/2024/03/02/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BA%8B%E5%8A%A1%E5%92%8C%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">https://github.com/forworl.github.io/2024/03/02/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BA%8B%E5%8A%A1%E5%92%8C%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/forworl.github.io" target="_blank">白兰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/forworl.github.io/2024/03/02/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" title="简单了解对象实例化过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">简单了解对象实例化过程</div></div></a></div><div class="next-post pull-right"><a href="/forworl.github.io/2024/03/01/2024-03-01%E6%AD%A6%E6%B1%89%E4%BA%9A%E4%BF%A1%E9%9D%A2%E8%AF%95/" title="2024-03-01武汉亚信面试"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2024-03-01武汉亚信面试</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/forworl.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">fuleyou</div><div class="author-info__description">人们往往高估了一天能做的事情，同时也低估了一年能做的事情</div></div><div class="card-info-data site-data is-center"><a href="/forworl.github.io/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/forworl.github.io/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/forworl.github.io/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" href="https://github.com/forworl"><i class="fab fa-github"></i><span>Follow Mehxj</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/forworl" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">哎哟，不错喔</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/03/08/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AFAQS/" title="简单了解什么是AQS">简单了解什么是AQS</a><time datetime="2024-03-08T11:43:50.000Z" title="发表于 2024-03-08 19:43:50">2024-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/03/08/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AFCAS/" title="简单了解什么是CAS">简单了解什么是CAS</a><time datetime="2024-03-08T10:38:07.000Z" title="发表于 2024-03-08 18:38:07">2024-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/03/08/mini-spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="mini-spring学习记录">mini-spring学习记录</a><time datetime="2024-03-08T06:44:40.000Z" title="发表于 2024-03-08 14:44:40">2024-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/03/08/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84/" title="简单了解什么是反射">简单了解什么是反射</a><time datetime="2024-03-08T01:47:20.000Z" title="发表于 2024-03-08 09:47:20">2024-03-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/03/03/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3volatile%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%8F%AF%E8%A7%81%E6%80%A7/" title="简单了解volatile如何解决可见性">简单了解volatile如何解决可见性</a><time datetime="2024-03-03T13:08:26.000Z" title="发表于 2024-03-03 21:08:26">2024-03-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/forworl.github.io/img/star1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By fuleyou</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/forworl.github.io/js/utils.js"></script><script src="/forworl.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
