@@ -232,25 +232,6 @@
     
     
     <entry>
-      <title>2024-03-01武汉亚信面试</title>
-      <link href="/forworl.github.io/2024/03/01/%E9%9D%A2%E8%AF%95/2024-03-01%E6%AD%A6%E6%B1%89%E4%BA%9A%E4%BF%A1%E9%9D%A2%E8%AF%95/"/>
-      <url>/forworl.github.io/2024/03/01/%E9%9D%A2%E8%AF%95/2024-03-01%E6%AD%A6%E6%B1%89%E4%BA%9A%E4%BF%A1%E9%9D%A2%E8%AF%95/</url>
-      
-        <content type="html"><![CDATA[<ol><li>购票的一整个逻辑</li><li>分布式锁不会影响QPS吗</li><li>分布式锁怎么实现</li><li>如果使用乐观锁版本号，数据库压力过大有什么问题，如何处理</li><li>先更新缓存，再更新数据库的一致性问题处理</li><li>基因法和雪花算法实现，雪花算法怎么保证有序</li><li>线程池怎么实现</li><li>讲讲反射</li><li>为什么用反射代替new对象</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>简单了解Redis常用数据类型的应用场景</title>
       <link href="/forworl.github.io/2024/02/29/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3Redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/"/>
       <url>/forworl.github.io/2024/02/29/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3Redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
@@ -498,25 +479,6 @@
     
     
     <entry>
-      <title>2024-01-30快音面试</title>
-      <link href="/forworl.github.io/2024/01/30/%E9%9D%A2%E8%AF%95/2024-01-30%E5%BF%AB%E9%9F%B3%E9%9D%A2%E8%AF%95/"/>
-      <url>/forworl.github.io/2024/01/30/%E9%9D%A2%E8%AF%95/2024-01-30%E5%BF%AB%E9%9F%B3%E9%9D%A2%E8%AF%95/</url>
-      
-        <content type="html"><![CDATA[<ol><li>自我介绍（√）</li><li>面向对象和面向过程区别（√）</li><li>进程和线程区别</li><li>多线程比多进程的优势</li><li>简述三次握手和四次挥手</li><li>创建TCP连接的时候新建连接和复用连接的区别</li><li>Redis数据类型和应用场景（× set随机数说的不好）</li><li>最左匹配原则（√ 联系到索引下推优化）</li><li>主键自增和非自增区别（× b+树说的不好）</li><li>介绍AV项目和自己的职责（√）</li><li>题目文件怎么解析（× 过程记不太清了）</li><li>图片上传和公式上传怎么做，存储位置（√ 讲了数据库表字段和OSS对象存储）</li><li>接口的请求量（×）</li><li>有没有SQL优化经历（×）</li><li>文件hash为什么还要题目名称去重（√）</li><li>介绍12306和自己的职责（√）</li><li>布隆过滤器原理和缓存穿透（√）</li><li>bitmap场景题：7天连续签到和14天累计签到（×）</li><li>如何计算程序的时间复杂度（√）</li><li>无限递归的问题（√）</li><li>解决方案（√ 程序返回和虚拟机参数）</li><li>有没有学过其它语言（√ C）</li><li>C语言和Java的区别（√）</li><li>Java有没有类似指针的东西（√）</li><li>值传递和引用传递的区别（√ ）</li><li>最近在学什么（√ RocketMQ）</li><li>实习多久，学校有问题吗（√）</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Nginx</title>
       <link href="/forworl.github.io/2024/01/17/Nginx/"/>
       <url>/forworl.github.io/2024/01/17/Nginx/</url>
@@ -565,25 +527,6 @@
       <categories>
           
           <category> 设计模式 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2023年度总结</title>
-      <link href="/forworl.github.io/2023/12/28/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
-      <url>/forworl.github.io/2023/12/28/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
-      
-        <content type="html"><![CDATA[<h1 id="年度回顾"><a href="#年度回顾" class="headerlink" title="年度回顾"></a>年度回顾</h1><p>年初因为疫情羊了在家里躺了3个月，记得去年世界杯12.17那天好的，熬夜看了克罗地亚半决赛和阿根廷-法国总决赛，回校后才好点</p><p>大二下也没干什么我记得，可能就过了一下JUC、JVM的网课，基本在摆烂吧</p><p>然后留校了1个月，基本也是在摆</p><p>暑假在学谷粒商城，很多时间浪费在前端了，感觉作用不大</p><p>大三上，国庆之后吧，才开始准备简历，一开始真的会感觉简历很空，11月差不多准备好，投一些小公司，其实感觉有点晚了</p><h1 id="来年展望"><a href="#来年展望" class="headerlink" title="来年展望"></a>来年展望</h1><p>寒假好好沉淀一个月吧，过年后直接冲了</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 年度总结 </category>
           
       </categories>
       
@@ -717,25 +660,6 @@
       <categories>
           
           <category> JUC </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2023-11-26的得物面试</title>
-      <link href="/forworl.github.io/2023/11/26/%E9%9D%A2%E8%AF%95/2023-11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/"/>
-      <url>/forworl.github.io/2023/11/26/%E9%9D%A2%E8%AF%95/2023-11-26%E5%BE%97%E7%89%A9%E9%9D%A2%E8%AF%95/</url>
-      
-        <content type="html"><![CDATA[<ol><li><p>自我介绍</p></li><li><p>JVM 内存模型 （×）</p></li><li><p>JVM 运行时数据区（×）</p></li><li><p>ArrayList 扩容流程（√）</p></li><li><p>Hashmap 的一个数据查找（√）</p></li><li><p>自定义对象作为 Hashmap 的 key，我们应该对这个自定义对象去覆盖哪些方法（√）</p></li><li><p>ReenTrantLock 和 Synchronized 的区别（×）</p></li><li><p>上如两种锁的可重入性在 JVM 是怎么实现的（×）</p></li><li><p>MySQL 四种隔离级别（√）</p></li><li><p>幻读在哪种隔离级别出现（√）</p></li><li><p>索引失效（√）</p></li><li><p>怎么才能用上联合索引（√）</p></li><li><p>Redis 数据类型（√）</p></li><li><p>zset 的底层实现（√）</p></li><li><p>为什么使用跳表，而不是B+树，红黑树（√）</p></li><li><p>Redis 的主从复制（×）</p></li><li><p>介绍一下数据结构可视化编程平台</p></li><li><p>数据结构可视化编程平台哪些难点，怎么实现（说了修改题目写时复制）</p></li><li><p>12306的缓存穿透，你怎么看缓存穿透（主要是布隆过滤器）</p></li><li><p>RocketMQ 来取消订单，技术选型，为什么用 RocketMQ（说了定时任务）</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
           
       </categories>
       
