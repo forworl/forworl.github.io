@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>白兰 | 白兰</title><meta name="author" content="fuleyou"><meta name="copyright" content="fuleyou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章第三章CSMA&#x2F;CD协议用来解决传统以太网（无连接的，并且采用曼彻斯特编码）的冲突问题，主要有两个功能：  载波监听：发的时候就会监听总线，每人发自己才发 碰撞检测：double-check，如果收到别人的信息的时间 - 自己发消息的时间 的差值 &lt; 争用期2t（也叫窗口大小，默认是51.2us），说明发生了冲突，此时需要暂停发送，并且随机时间后再次发送（每次发生冲突后都可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白兰">
+<meta property="og:url" content="https://github.com/forworl.github.io/2024/05/14/%E9%80%9A%E4%BF%A1%E7%BD%91/index.html">
+<meta property="og:site_name" content="白兰">
+<meta property="og:description" content="第一章第三章CSMA&#x2F;CD协议用来解决传统以太网（无连接的，并且采用曼彻斯特编码）的冲突问题，主要有两个功能：  载波监听：发的时候就会监听总线，每人发自己才发 碰撞检测：double-check，如果收到别人的信息的时间 - 自己发消息的时间 的差值 &lt; 争用期2t（也叫窗口大小，默认是51.2us），说明发生了冲突，此时需要暂停发送，并且随机时间后再次发送（每次发生冲突后都可能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-05-14T11:26:48.201Z">
+<meta property="article:modified_time" content="2024-05-14T15:01:42.286Z">
+<meta property="article:author" content="fuleyou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/forworl.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/forworl.github.io/2024/05/14/%E9%80%9A%E4%BF%A1%E7%BD%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/forworl.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/forworl.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/forworl.github.io/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '白兰',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-14 23:01:42'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/forworl.github.io/archives/"><div class="headline">文章</div><div class="length-num">77</div></a><a href="/forworl.github.io/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/forworl.github.io/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/forworl.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/forworl.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/forworl.github.io/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/shuoshuo/"><i class="fa-fw fa fa-user"></i><span> 分享</span></a></li><li><a class="site-page child" href="/forworl.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/forworl.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/forworl.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/forworl.github.io/img/star1.jpg')"><nav id="nav"><span id="blog-info"><a href="/forworl.github.io/" title="白兰"><span class="site-name">白兰</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/forworl.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/forworl.github.io/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/forworl.github.io/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/forworl.github.io/shuoshuo/"><i class="fa-fw fa fa-user"></i><span> 分享</span></a></li><li><a class="site-page child" href="/forworl.github.io/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/forworl.github.io/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/forworl.github.io/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/forworl.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-14T11:26:48.201Z" title="发表于 2024-05-14 19:26:48">2024-05-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-14T15:01:42.286Z" title="更新于 2024-05-14 23:01:42">2024-05-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><h2 id="CSMA-x2F-CD协议"><a href="#CSMA-x2F-CD协议" class="headerlink" title="CSMA&#x2F;CD协议"></a>CSMA&#x2F;CD协议</h2><p>用来解决传统以太网（无连接的，并且采用曼彻斯特编码）的冲突问题，主要有两个功能：</p>
+<ul>
+<li><strong>载波监听</strong>：发的时候就会监听总线，每人发自己才发</li>
+<li><strong>碰撞检测</strong>：double-check，如果收到别人的信息的时间 - 自己发消息的时间 的差值 &lt; 争用期2t（也叫窗口大小，默认是51.2us），说明发生了冲突，此时需要暂停发送，并且随机时间后再次发送（每次发生冲突后都可能增加随机时间）</li>
+</ul>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
+<li>载波监听，空闲就发，忙就等随机时间后再发</li>
+<li>碰撞就停止发送，并且发送认为干扰信号，等随机时间后再发</li>
+</ol>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514201007703.png" alt="image-20240514201007703"></p>
+<h2 id="CSMA-x2F-CA协议"><a href="#CSMA-x2F-CA协议" class="headerlink" title="CSMA&#x2F;CA协议"></a>CSMA&#x2F;CA协议</h2><p>用于解决CSMA&#x2F;CD协议的一些问题：</p>
+<ul>
+<li><strong>不断监听总线消耗大</strong>：</li>
+<li><strong>接收端碰撞问题</strong>：<ul>
+<li><strong>隐蔽站问题</strong>：用RTS（请求发送帧）和CTS（允许发送帧）先看看能不能发，开销比重传小</li>
+<li><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514193647820.png" alt="image-20240514193647820" style="zoom:50%;" /></li>
+<li><strong>碰撞站问题</strong>：用退避算法避免碰撞，倒计时为0，信道一定空闲</li>
+<li><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514193656523.png" alt="image-20240514193656523" style="zoom: 50%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="帧间间隔"><a href="#帧间间隔" class="headerlink" title="帧间间隔"></a>帧间间隔</h3><ul>
+<li><strong>SIFS</strong>：短 (Short) 帧间间隔，<strong>数据帧和ACK帧之间</strong>，为了收到ACK帧和丢失重传吧感觉</li>
+<li><strong>DIFS</strong>：分布协调功能帧间间隔，<strong>两个数据帧之间</strong>，<strong>每次发送数据帧之前都需要等待DIFS帧</strong>；<strong>等待DIFS时间内，对于高优先级帧可以插队本帧的发送</strong></li>
+</ul>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514194127540.png" alt="image-20240514194127540"></p>
+<h3 id="争用窗口"><a href="#争用窗口" class="headerlink" title="争用窗口"></a>争用窗口</h3><p><strong>争用窗口是为了减少碰撞概率</strong>，采用了一个<strong>退避计时器</strong>（采用二进制指数<strong>退避算法</strong>，每次退避都会随机一个时隙），每个一个时隙检测一次信道：</p>
+<ul>
+<li><strong>信道空闲</strong>：继续计时器倒计时</li>
+<li><strong>信道忙</strong>：等到空闲再继续倒计时，<strong>直到0就可以发送数据帧</strong></li>
+</ul>
+<h3 id="流程图-1"><a href="#流程图-1" class="headerlink" title="流程图"></a>流程图</h3><ol>
+<li>goto：do-while循环，第一次进来不用使用退避算法，直接等待DIFS就发</li>
+<li>计时器置位是为了等待CTS，等不到CTS就用退避算法，搞个计时器倒计时，倒计时为0再重新等待DIFS发送 goto：</li>
+</ol>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514200800240.png" alt="image-20240514200800240"></p>
+<h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><h3 id="IP地址及其标识方法"><a href="#IP地址及其标识方法" class="headerlink" title="IP地址及其标识方法"></a>IP地址及其标识方法</h3><p>32位二进制代码，点分十进制计数法</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514214610631.png" alt="image-20240514214610631"></p>
+<h3 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h3><p>指派主机号要怕排除0（本网络）和2^n-1（回环地址、广播地址）</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514214633116.png" alt="image-20240514214633116"></p>
+<h3 id="无分类编址"><a href="#无分类编址" class="headerlink" title="无分类编址"></a>无分类编址</h3><p>通过子网掩码和网络前缀相与得到网络号，剩下的是主机号，同样排除0（本网络）和2^n-1（回环地址、广播地址）</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514214959481.png" alt="image-20240514214959481"></p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514215006612.png" alt="image-20240514215006612"></p>
+<h4 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h4><p>用一条路由项目代替有分类编址的很多路由项目</p>
+<h3 id="IP地址的特点"><a href="#IP地址的特点" class="headerlink" title="IP地址的特点"></a>IP地址的特点</h3><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514220835259.png" alt="image-20240514220835259"></p>
+<h2 id="IP层转发分组"><a href="#IP层转发分组" class="headerlink" title="IP层转发分组"></a>IP层转发分组</h2><p>数据报根据路由表的转发表找下一跳的IP地址，最终到达目标主机</p>
+<h3 id="转发表"><a href="#转发表" class="headerlink" title="转发表"></a>转发表</h3><p>为了压缩转发表的路由项目，用网络号代替每个主机的IP地址<br>目标IP &amp; 子网掩码 &#x3D;&gt; 目标子网，通过路由表的前缀匹配比对目标子网找到目标网络，如果有多个匹配，默认走最长匹配</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514220110037.png" alt="image-20240514220110037"></p>
+<h3 id="特殊路由"><a href="#特殊路由" class="headerlink" title="特殊路由"></a>特殊路由</h3><ul>
+<li><strong>默认路由</strong>：0.0.0.0&#x2F;32，其它前缀都不匹配就走这个路由</li>
+<li><strong>主机路由</strong>：a.b.c.d&#x2F;32</li>
+</ul>
+<h3 id="路由转发规则"><a href="#路由转发规则" class="headerlink" title="路由转发规则"></a>路由转发规则</h3><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514220731786.png" alt="image-20240514220731786"></p>
+<h2 id="内部网关协议RIP"><a href="#内部网关协议RIP" class="headerlink" title="内部网关协议RIP"></a>内部网关协议RIP</h2><p><strong>维护网络间的距离</strong>，两个相邻路由器之间的距离称为”1跳”，超过16跳就不可达</p>
+<p><strong>RIP特点</strong>：好消息传播的快，坏消息传播的慢（慢收敛），网络故障要很久才能传到各个路由器（通过时间间隔交换路由表实现，每次+1直到16不可达）</p>
+<h3 id="路由表的建立"><a href="#路由表的建立" class="headerlink" title="路由表的建立"></a>路由表的建立</h3><p>刚开始的路由表默认是空的，每隔一段时间（30s）相邻的路由表就会同步消息（各自的路由表），同时路由表会计算到各个网络的最短距离和对应的下一跳IP地址.</p>
+<p>从C来的，建立一个临时的路由表，下一跳都是C，跳数从C全表+1</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514223607531.png" alt="image-20240514223607531"></p>
+<h2 id="MPLS"><a href="#MPLS" class="headerlink" title="MPLS"></a>MPLS</h2><p><strong>MPLS作为IP的增强技术</strong>，解决IP查找路由表慢、网络故障的服务质量下降的问题。</p>
+<p><strong>给IP数据报打上标签（lable），利用多种数据链路层的协议转发分组。</strong></p>
+<p>进入MPLS域的规则：由入口就确定了路由转发路径</p>
+<ol>
+<li>给IP数据报打上标签（<strong>分类</strong>），就是在IP头和MAC头之间插入了一个MPLS头</li>
+<li>各标签交换路由器LSR 根据 LDP 找到 路径LSP 进行IP数据包转发</li>
+<li>给IP数据报去除标签</li>
+</ol>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514225027028.png" alt="image-20240514225027028"></p>
+<h3 id="转发等价类FEC"><a href="#转发等价类FEC" class="headerlink" title="转发等价类FEC"></a>转发等价类FEC</h3><p>按照同样的方式对待分组的集合，由工作人员自行配置，可用于负载均衡</p>
+<p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514225649108.png" alt="image-20240514225649108"></p>
+<h3 id="MPLS首部格式"><a href="#MPLS首部格式" class="headerlink" title="MPLS首部格式"></a>MPLS首部格式</h3><p><img src="https://fuleyou-note.oss-cn-guangzhou.aliyuncs.com/noteFile/image-20240514225914260.png" alt="image-20240514225914260"></p>
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://github.com/forworl.github.io">fuleyou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://github.com/forworl.github.io/2024/05/14/%E9%80%9A%E4%BF%A1%E7%BD%91/">https://github.com/forworl.github.io/2024/05/14/%E9%80%9A%E4%BF%A1%E7%BD%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/forworl.github.io" target="_blank">白兰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/forworl.github.io/2024/05/09/IoC/" title="IoC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">IoC</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/forworl.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">fuleyou</div><div class="author-info__description">人们往往高估了一天能做的事情，同时也低估了一年能做的事情</div></div><div class="card-info-data site-data is-center"><a href="/forworl.github.io/archives/"><div class="headline">文章</div><div class="length-num">77</div></a><a href="/forworl.github.io/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/forworl.github.io/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" href="https://github.com/forworl"><i class="fab fa-github"></i><span>Follow Mehxj</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/forworl" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">哎哟，不错喔</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSMA-x2F-CD%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.1.</span> <span class="toc-text">CSMA&#x2F;CD协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.1.1.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSMA-x2F-CA%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.2.</span> <span class="toc-text">CSMA&#x2F;CA协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A7%E9%97%B4%E9%97%B4%E9%9A%94"><span class="toc-number">2.2.1.</span> <span class="toc-text">帧间间隔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%89%E7%94%A8%E7%AA%97%E5%8F%A3"><span class="toc-number">2.2.2.</span> <span class="toc-text">争用窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE-1"><span class="toc-number">2.2.3.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="toc-number">2.3.</span> <span class="toc-text">IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E5%8F%8A%E5%85%B6%E6%A0%87%E8%AF%86%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.1.</span> <span class="toc-text">IP地址及其标识方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="toc-number">2.3.2.</span> <span class="toc-text">分类的IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%88%86%E7%B1%BB%E7%BC%96%E5%9D%80"><span class="toc-number">2.3.3.</span> <span class="toc-text">无分类编址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%81%9A%E5%90%88"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">路由聚合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">2.3.4.</span> <span class="toc-text">IP地址的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E5%B1%82%E8%BD%AC%E5%8F%91%E5%88%86%E7%BB%84"><span class="toc-number">2.4.</span> <span class="toc-text">IP层转发分组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E8%A1%A8"><span class="toc-number">2.4.1.</span> <span class="toc-text">转发表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E8%B7%AF%E7%94%B1"><span class="toc-number">2.4.2.</span> <span class="toc-text">特殊路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%BD%AC%E5%8F%91%E8%A7%84%E5%88%99"><span class="toc-number">2.4.3.</span> <span class="toc-text">路由转发规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%BD%91%E5%85%B3%E5%8D%8F%E8%AE%AERIP"><span class="toc-number">2.5.</span> <span class="toc-text">内部网关协议RIP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">2.5.1.</span> <span class="toc-text">路由表的建立</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPLS"><span class="toc-number">2.6.</span> <span class="toc-text">MPLS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E7%AD%89%E4%BB%B7%E7%B1%BBFEC"><span class="toc-number">2.6.1.</span> <span class="toc-text">转发等价类FEC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MPLS%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.6.2.</span> <span class="toc-text">MPLS首部格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第六章</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/05/14/%E9%80%9A%E4%BF%A1%E7%BD%91/" title="无题">无题</a><time datetime="2024-05-14T11:26:48.201Z" title="发表于 2024-05-14 19:26:48">2024-05-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/05/09/IoC/" title="IoC">IoC</a><time datetime="2024-05-09T08:41:15.000Z" title="发表于 2024-05-09 16:41:15">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/05/09/Spring%E4%BA%8B%E5%8A%A1/" title="Spring事务">Spring事务</a><time datetime="2024-05-09T08:23:23.000Z" title="发表于 2024-05-09 16:23:23">2024-05-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/05/07/Runnable%E3%80%81Callable%E3%80%81FutureTask%E3%80%81CompletableFuture/" title="Runnable、Callable、FutureTask、CompletableFuture">Runnable、Callable、FutureTask、CompletableFuture</a><time datetime="2024-05-07T11:45:22.000Z" title="发表于 2024-05-07 19:45:22">2024-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/forworl.github.io/2024/05/06/IO/" title="IO">IO</a><time datetime="2024-05-06T06:56:48.000Z" title="发表于 2024-05-06 14:56:48">2024-05-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/forworl.github.io/img/star1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By fuleyou</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/forworl.github.io/js/utils.js"></script><script src="/forworl.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/forworl.github.io/js/search/local-search.js"></script></div></div></body></html>
